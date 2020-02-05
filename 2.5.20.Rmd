@@ -1,0 +1,32 @@
+---
+title: "Class Work"
+author: "Mike Silva"
+date: "2/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(babynames)
+library(stringr)
+```
+
+```{r}
+start_with_a <- 
+  babynames %>% 
+  mutate(start_with_a = ifelse(str_detect(name, "^A"), TRUE, FALSE)) %>% 
+  group_by(year) %>% 
+  summarize(prop_a = sum(prop),
+            sum_a = sum(n)) %>% 
+  filter("start_with_a" == "TRUE") %>% 
+  ggplot(aes(x = year, y = prop_a)) + geom_line()
+
+```
+  mutate(start_with_e = ifelse(str_detect(name,"^E"), TRUE, FALSE)) %>% 
+  mutate(start_with_i = ifelse(str_detect(name, "^I"), TRUE, FALSE)) %>% 
+  mutate(start_with_o = ifelse(str_detect(name, "^O"), TRUE, FALSE)) %>% 
+  mutate(start_with_u = ifelse(str_detect(name, "^U"), TRUE, FALSE)) %>% 
